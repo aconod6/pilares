@@ -1,4 +1,12 @@
-CREATE DATABASE EJERCICIO2;
+-- Elimina la base de datos si existe
+DROP DATABASE IF EXISTS ejercicio2;
+
+-- Crea la base de datos
+CREATE DATABASE ejercicio2;
+
+-- Utilizar la base de datos
+USE ejercicio2;
+
 CREATE TABLE clientes(
      id_codigo_interno INT primary key,
      nombre varchar(20) not null,
