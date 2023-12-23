@@ -1,0 +1,146 @@
+<mxfile host="app.diagrams.net" modified="2023-12-14T06:12:23.800Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="5-_WOWcOiAfoQB6CJICi" version="22.1.8" type="github">
+  <diagram name="Página-1" id="O0hm9PF7zZzwlfXmEJVd">
+    <mxGraphModel dx="2876" dy="1083" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vmUbetThvOm7p0CoISAC-1" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 25px; background-color: initial;&quot;&gt;Concepto Diagrama de flujo&lt;/span&gt;&lt;/div&gt;&lt;font style=&quot;&quot;&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;font-size: 25px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;font-size: 25px;&quot;&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Almacén de datos(Data Warehouse) es un sistema que agrega y combina información de diferentes fuentes en un almacén de datos único y centralizado consistente para respaldar el análisis empresarial, la minería de datos, inteligencia artificial y Machine Learning, Data warehouse permite a una organización o empresa ejecutar análisis potentes en grandes volúmenes de petabytes de datos históricos de formas que una base de datos estándar simplemente no puede.&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-640" y="40" width="1280" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-2" value="SOLICITUD DE RENOVACION" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-520" y="560" width="160" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-3" value="ID_Telefono&lt;br&gt;ID_Modelo&lt;br&gt;ID_planes&lt;br&gt;ID_correo&lt;br&gt;------------------------------------&lt;br&gt;plazo&lt;br&gt;direccion_de_entrega" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-2">
+          <mxGeometry y="50" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-4" target="vmUbetThvOm7p0CoISAC-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-4" value="CLIENTE" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-760" y="440" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-5" value="ID_Telefono&lt;br&gt;nombre&lt;br&gt;direccion&lt;br&gt;mensualidad" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-4">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-6" target="vmUbetThvOm7p0CoISAC-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-6" value="PLANES" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="440" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-7" value="ID_planes&lt;br&gt;nombre&lt;br&gt;mensualidad&lt;br&gt;ganancia" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-6">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-8" target="vmUbetThvOm7p0CoISAC-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-8" value="EQUIPOS" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-760" y="720" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-9" value="ID_Modelo&lt;br&gt;color&lt;br&gt;capacidad&lt;br&gt;marca" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-8">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-10" target="vmUbetThvOm7p0CoISAC-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-10" value="VENDEDOR" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="720" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-11" value="ID_CORREO&lt;br&gt;NOMBRE&lt;br&gt;TELEFONO&lt;br&gt;DIRECCION&lt;br&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-10">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-16" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;ESQUEMA ESTRELLA&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-580" y="360" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-17" value="PROCESO DE&lt;br&gt;&amp;nbsp;VENTAS" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="630" width="160" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-18" value="ID_Orden (FK)&lt;br&gt;ID_ENVIO (FK)&lt;br&gt;ID_entrega (FK)&lt;br&gt;ID_CORREO (FK)&lt;br&gt;--------------------------&lt;br&gt;ganancia" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-17">
+          <mxGeometry y="50" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-89" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-27" target="vmUbetThvOm7p0CoISAC-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-27" value="ENTREGA DE VENTA" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="870" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-28" value="ID_entrega (PK)&lt;br&gt;en_manos_de_cliente&lt;br&gt;activada&lt;br&gt;fecha_entrega" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-27">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-32" target="vmUbetThvOm7p0CoISAC-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-32" value="ENVIOS" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="430" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-33" value="ID_ENVIO (PK)&lt;br&gt;id_tienda (FK)&lt;br&gt;almacen&lt;br&gt;fecha_envio" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-32">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-70" value="SOLICITUD DE RENOVACION" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="630" width="160" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-71" value="ID_Oden&amp;nbsp; (PK)&lt;br&gt;ID_Telefono (FK)&lt;br&gt;ID_Modelo (FK)&lt;br&gt;ID_planes (FK)&lt;br&gt;------------------------------------&lt;br&gt;plazo&lt;br&gt;anticipo" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-70">
+          <mxGeometry y="50" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-73" target="vmUbetThvOm7p0CoISAC-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-73" value="CLIENTE" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="550" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-74" value="ID_Telefono (PK)&lt;br&gt;nombre&lt;br&gt;direccion&lt;br&gt;mensualidad" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-73">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-76" target="vmUbetThvOm7p0CoISAC-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-76" value="PLANES" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="350" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-77" value="ID_planes (PK)&lt;br&gt;nombre&lt;br&gt;mensualidad&lt;br&gt;ganancia" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-76">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-79" target="vmUbetThvOm7p0CoISAC-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-79" value="EQUIPOS" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="750" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-80" value="ID_Modelo (PK)&lt;br&gt;color&lt;br&gt;capacidad&lt;br&gt;marca" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-79">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-82" value="VENDEDOR" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="630" width="160" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-83" value="ID_CORREO (PK)&lt;br&gt;NOMBRE&lt;br&gt;TELEFONO&lt;br&gt;DIRECCION" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-82">
+          <mxGeometry y="50" width="160" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-84" value="DIRECCION SUCURSAL" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="390" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-85" value="ID_tienda (PK)&lt;br&gt;direccion&lt;br&gt;encargado&lt;br&gt;horario&lt;br&gt;referencias" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="vmUbetThvOm7p0CoISAC-84">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.009;entryY=0.337;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-82" target="vmUbetThvOm7p0CoISAC-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="729.8799999999999" as="sourcePoint" />
+            <mxPoint x="400" y="729.8799999999999" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="380" y="730" />
+              <mxPoint x="380" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.003;entryY=0.14;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="vmUbetThvOm7p0CoISAC-85" target="vmUbetThvOm7p0CoISAC-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vmUbetThvOm7p0CoISAC-94" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;ESQUEMA COPO DE NIEVE&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="273" y="340" width="280" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
