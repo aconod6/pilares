@@ -46,6 +46,10 @@ VALUES (null, "Disco Duro SATA3 1TB",86.99,5),
        (null, "Impresora HP Deskjet 3720",59.99,3),
        (null, "Impresora HP Laserjet Pro M26nw",180,3);
 
+
+/* ____________________________________________ENTREGABLE 7___________________________________________________*/
+
+
 /* 
     1 Calcula el número total de productos que hay en la tabla productos. 
 */
@@ -92,6 +96,13 @@ FROM fabricantes f
 LEFT JOIN producto p ON f.codigo_fabricante = p.fabricantes_codigo_fabricante
 GROUP BY f.nombre
 HAVING AVG(p.precio) > 200;
+
+
+
+
+
+
+
 
 
 /*__________________________ entregable 9_____________________________*/

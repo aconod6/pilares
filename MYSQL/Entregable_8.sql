@@ -9,9 +9,9 @@ USE entregable_8;
 
 CREATE table test(
      id int auto_increment primary key,
-     nombre varchar (50),
-     apellido1 varchar (50),
-     apellido2 varchar (50),
+     nombre varchar (50) not null,
+     apellido1 varchar (50) not null,
+     apellido2 varchar (50)not null,
      nota double
 );
 
