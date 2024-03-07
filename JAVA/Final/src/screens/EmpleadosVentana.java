@@ -25,9 +25,6 @@ import models.Genero;
 
 public class EmpleadosVentana extends JFrame implements ActionListener {
 
-    GeneroRepository generoRepository = new GeneroRepository();
-    EmpleadoRepository empleadoRepository = new EmpleadoRepository();
-
     JLabel textJLabel;
     JLabel numeroEmpleadoJLabel;
     JLabel nombrJLabel;
@@ -48,6 +45,10 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
     JButton modificarJButton;
     JButton eliminarJButton;
     JButton limpiarJButtonF;
+
+    GeneroRepository generoRepository = new GeneroRepository();
+    EmpleadoRepository empleadoRepository = new EmpleadoRepository();
+    Empleado empleado;
 
     public EmpleadosVentana() {
         super("Empleados CRUD");
@@ -171,6 +172,7 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         gbc.gridx = 0; // columna donde inicia
         gbc.gridy = 8; // fila donde inicia
         gbc.gridwidth = 1; // numero de columnas que abarca
+        guardarJButton.addActionListener(this);
         add(guardarJButton, gbc);
 
         gbc.gridx = 1; // columna donde inicia
@@ -190,59 +192,111 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         add(limpiarJButtonF, gbc);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == modificarJButton) {
-            System.out.println("Modificar");
-           /*  if (empleado = null) return;
-            empleado = dameEmpleado();
- */
-        }
-        if(e.getSource() == buscarJButton){
-            System.out.println("Buscando ...");
-          recuperarEmpleado();
-        }
-    }
-
     public void recuperarEmpleado() {
         Long id = Long.parseLong(numeroEmpleadoJComboBox.getSelectedItem().toString());
-        Empleado empleado = empleadoRepository.recuperarId(id);
+        empleado = empleadoRepository.recuperarId(id);
         nombreJTextField.setText(empleado.getNombe());
         domicilioJTextField.setText(empleado.getDomicilio());
         telefonoJTextField.setText(empleado.getTelefono());
         emailJTextField.setText(empleado.getEmail());
         fehcaJDateChooser.setDate(empleado.getFechadeNacimiento());
-        generoJComboBox.setSelectedItem(empleado.getGenero());
+        generoJComboBox.setSelectedIndex(comparaGenero(empleado.getGenero()));
+        comparaGenero(empleado.getGenero());
         System.out.println(empleado.getGenero());
     }
 
-    public Empleado dameEmpleado() {
+    private int comparaGenero(Genero genero) {
+        int tamanio = generoJComboBox.getItemCount();
+        for (int i = 0; i < tamanio; i++) {
+            if (genero.getNombre().equals(generoJComboBox.getItemAt(i).getNombre())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void guardarEmpleado() {
         Long l = (Long) (generoJComboBox.getSelectedItem());
         Genero genero = generoRepository.recuperarId(l);
         java.util.Date utilDate = fehcaJDateChooser.getDate();
         java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
         Empleado empleado = new Empleado(
-                l,
+                null,
                 nombreJTextField.getName(),
                 domicilioJTextField.getText(),
                 telefonoJTextField.getText(),
                 emailJTextField.getText(),
                 fecha,
                 genero);
-        return empleado;
-    }
-        public void llenarConboBox () {
-            List<Empleado> empleados = empleadoRepository.recuperarTodos();
-            for (Empleado empleado : empleados ) {
-            numeroEmpleadoJComboBox.addItem(empleado.getId());
-            }
-            List<Genero> generos = generoRepository.recuperarTodos();
-            for (Genero genero : generos ) {
-            generoJComboBox.addItem(genero);
-    
+        empleadoRepository.agregar(empleado);
 
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == modificarJButton) {
+            System.out.println("Modificar");
+            modificarEmpleado();
 
         }
+        if (e.getSource() == buscarJButton) {
+            System.out.println("Buscando ...");
+            recuperarEmpleado();
+        }
+        if (e.getSource() == guardarJButton) {
+            Long l = (Long) (generoJComboBox.getSelectedItem());
+            Genero genero = generoRepository.recuperarId(l);
+            java.util.Date utilDate = fehcaJDateChooser.getDate();
+            java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
+            Empleado empleado = new Empleado(
+                    null,
+                    nombreJTextField.getName(),
+                    domicilioJTextField.getText(),
+                    telefonoJTextField.getText(),
+                    emailJTextField.getText(),
+                    fecha,
+                    genero);
+            empleadoRepository.agregar(empleado);
+        }
     }
-    
+
+    private void modificarEmpleado() {
+        empleado.setNombe(nombreJTextField.getText());
+        empleado.setDomicilio(domicilioJTextField.getText());
+        empleado.setTelefono(telefonoJTextField.getText());
+        empleado.setEmail(emailJTextField.getText());
+        empleado.setFechadeNacimiento(convertirf(fehcaJDateChooser.getDate()));
+
+    }
+
+    public Empleado dameEmpleado() {
+        Long l = (Long) (generoJComboBox.getSelectedItem());
+        Genero genero = generoRepository.recuperarId(l);
+        Empleado empleado = new Empleado(
+                null,
+                nombreJTextField.getName(),
+                domicilioJTextField.getText(),
+                telefonoJTextField.getText(),
+                emailJTextField.getText(),
+                convertirf(fehcaJDateChooser.getDate()),
+                genero);
+        return empleado;
+    }
+
+    public void llenarConboBox() {
+        List<Empleado> empleados = empleadoRepository.recuperarTodos();
+        for (Empleado empleado : empleados) {
+            numeroEmpleadoJComboBox.addItem(empleado.getId());
+        }
+        List<Genero> generos = generoRepository.recuperarTodos();
+        for (Genero genero : generos) {
+            generoJComboBox.addItem(genero);
+
+        }
+
+    }
+
+    private java.sql.Date convertirf (java.util.Date utilFecha){
+        return new java.sql.Date(utilFecha.getTime());
+    }
+}

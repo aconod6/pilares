@@ -1,5 +1,7 @@
+import java.sql.Date;
 import java.util.List;
 
+import javax.security.auth.login.AccountNotFoundException;
 import javax.swing.JFrame;
 
 import db.conexion.ConexionDB;
@@ -12,7 +14,7 @@ import screens.VentaLogin;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        //GeneroRepository generoRepository = new GeneroRepository(); // se manda a
+        GeneroRepository generoRepository = new GeneroRepository(); // se manda a
         EmpleadoRepository empleadoRepository = new EmpleadoRepository();// llamar todo los metodos de repository
         // llamar la clase para todas las
         // funciones de Genero
@@ -30,16 +32,21 @@ public class App {
          generoRepository.agregar(g2);
          generoRepository.agregar(g3);
          generoRepository.agregar(g4); */
-        
+
+         /* Genero g4 = new Genero(null,"BINARIO");
+         generoRepository.agregar(g4); */
+
+             
+
 
         //modificar genero
-         /* Genero mg = new Genero(1L, "OTROS");
-         generoRepository.modificar(mg); */
-         
+         /* Genero mg = new Genero(3L, "OTROS");
+         generoRepository.modificar(mg);
+          */
 
         
          //Este es para poder imprimir toda la tabla genero
-         /*  List<Genero> t = generoRepository.recuperarTodos();
+        /*  List<Genero> t = generoRepository.recuperarTodos();
          for (Genero genero : t) {
          System.out.println(genero.getNombre());
          } */
@@ -60,8 +67,9 @@ public class App {
         
 
         //Iniciar venta empleado
-       EmpleadosVentana empleadosVentana = new EmpleadosVentana();
+        EmpleadosVentana empleadosVentana = new EmpleadosVentana();
         empleadosVentana.setVisible(true);
+
 
         //Este es para poder imprimir toda la tabla genero
         /* List<Empleado> t = empleadoRepository.recuperarTodos();

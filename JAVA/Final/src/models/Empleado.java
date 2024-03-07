@@ -3,14 +3,14 @@ package models;
 import java.sql.Date;
 
 public class Empleado {
-   private long id;
+   private Long id;
    private String nombe;
    private String domicilio;
    private String telefono;
    private String email;
    private Date fechadeNacimiento;
    private Genero genero;
-    public Empleado(long id, String nombe, String domicilio, String telefono, String email, Date fechadeNacimiento,
+    public Empleado(Long id, String nombe, String domicilio, String telefono, String email, Date fechadeNacimiento,
             Genero genero) {
         this.id = id;
         this.nombe = nombe;
@@ -20,10 +20,10 @@ public class Empleado {
         this.fechadeNacimiento = fechadeNacimiento;
         this.genero = genero;
     }
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getNombe() {
