@@ -51,11 +51,8 @@ public class App {
          //Buscar empleado por id
          /* Empleado empleado = empleadoRepository.recuperarId(1l);
          System.out.println(empleado.getNombe());
+         System.out.println(empleado.getGenero());
          String nombre = empleado.getNombe(); */
-
-        
-        
-        
         
          //Iniciar ventana login
          /* VentaLogin ventaLogin = new VentaLogin(null);
@@ -63,7 +60,7 @@ public class App {
         
 
         //Iniciar venta empleado
-      EmpleadosVentana empleadosVentana = new EmpleadosVentana();
+       EmpleadosVentana empleadosVentana = new EmpleadosVentana();
         empleadosVentana.setVisible(true);
 
         //Este es para poder imprimir toda la tabla genero

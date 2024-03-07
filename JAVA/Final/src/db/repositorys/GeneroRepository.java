@@ -123,4 +123,6 @@ public class GeneroRepository implements RepositoryInterfaces<Genero> {
         }
         return null;
 }
+
+
 }

@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,7 +27,7 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
 
     GeneroRepository generoRepository = new GeneroRepository();
     EmpleadoRepository empleadoRepository = new EmpleadoRepository();
-    
+
     JLabel textJLabel;
     JLabel numeroEmpleadoJLabel;
     JLabel nombrJLabel;
@@ -41,24 +42,24 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
     JTextField telefonoJTextField;
     JTextField emailJTextField;
     JDateChooser fehcaJDateChooser;
-    JComboBox<String> generoJComboBox;
+    JComboBox<Genero> generoJComboBox;
     JButton buscarJButton;
     JButton guardarJButton;
     JButton modificarJButton;
     JButton eliminarJButton;
     JButton limpiarJButtonF;
-    
-    public EmpleadosVentana(){
+
+    public EmpleadosVentana() {
         super("Empleados CRUD");
         this.setSize(600, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(new GridBagLayout());
         crearComponentes();
-        llenarComboBox();
+        llenarConboBox();
     }
 
-       private void crearComponentes() {
+    private void crearComponentes() {
         textJLabel = new JLabel("Empleados");
         textJLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numeroEmpleadoJLabel = new JLabel("# Empleado");
@@ -74,7 +75,7 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         telefonoJTextField = new JTextField(10);
         emailJTextField = new JTextField(100);
         fehcaJDateChooser = new JDateChooser();
-        generoJComboBox = new JComboBox<String>();
+        generoJComboBox = new JComboBox<Genero>();
         buscarJButton = new JButton("Buscar");
         guardarJButton = new JButton("Guardar");
         modificarJButton = new JButton("Modificar");
@@ -98,7 +99,7 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         gbc.gridx = 1;
         // gbc.gridy = 1;
         gbc.gridwidth = 1;
-       // iniciarButton.addActionListener(this);
+        // iniciarButton.addActionListener(this);
         add(numeroEmpleadoJComboBox, gbc);
 
         gbc.gridx = 2; // columna donde inicia
@@ -161,7 +162,7 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         gbc.gridy = 7; // fila donde inicia
         gbc.gridwidth = 1; // numero de columnas que abarca
         add(generoJLabel, gbc);
-        
+
         gbc.gridx = 1; // columna donde inicia
         gbc.gridy = 7; // fila donde inicia
         gbc.gridwidth = 2; // numero de columnas que abarca
@@ -175,6 +176,7 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         gbc.gridx = 1; // columna donde inicia
         gbc.gridy = 8; // fila donde inicia
         gbc.gridwidth = 1; // numero de columnas que abarca
+        modificarJButton.addActionListener(this);
         add(modificarJButton, gbc);
 
         gbc.gridx = 2; // columna donde inicia
@@ -188,48 +190,59 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         add(limpiarJButtonF, gbc);
     }
 
-
-
-   
-
-    
-    public void llenarComboBox () {
-        List<Genero> generos = generoRepository.recuperarTodos();
-        for (Genero genero : generos ) {
-        generoJComboBox.addItem(genero.getNombre());
-        }
-            List<Empleado> empleados = empleadoRepository.recuperarTodos();
-        for (Empleado empleado : empleados ) {
-        numeroEmpleadoJComboBox.addItem(empleado.getId());
-        }
-
-        
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == modificarJButton ){
+        if (e.getSource() == modificarJButton) {
             System.out.println("Modificar");
-            Long id = (Long) (numeroEmpleadoJComboBox.getSelectedItem());
-            String nombre = nombreJTextField.getText();
-            String domicilio = domicilioJTextField.getText();
-            String telefono = telefonoJTextField.getText();
-            String email = emailJTextField.getText();
-            Empleado empleado = new Empleado(id, nombre, domicilio, telefono, email, null, null);
-            empleadoRepository.modificar(empleado);
+           /*  if (empleado = null) return;
+            empleado = dameEmpleado();
+ */
         }
-        if (e.getSource() == buscarJButton){  
-            System.out.println("Buscar...");
-            Long id = (Long)(numeroEmpleadoJComboBox.getSelectedItem());
-            Empleado empleado = empleadoRepository.recuperarId(id);
-            nombreJTextField.setText(empleado.getNombe());
+        if(e.getSource() == buscarJButton){
+            System.out.println("Buscando ...");
+          recuperarEmpleado();
+        }
+    }
+
+    public void recuperarEmpleado() {
+        Long id = Long.parseLong(numeroEmpleadoJComboBox.getSelectedItem().toString());
+        Empleado empleado = empleadoRepository.recuperarId(id);
+        nombreJTextField.setText(empleado.getNombe());
         domicilioJTextField.setText(empleado.getDomicilio());
         telefonoJTextField.setText(empleado.getTelefono());
         emailJTextField.setText(empleado.getEmail());
-        
-            
+        fehcaJDateChooser.setDate(empleado.getFechadeNacimiento());
+        generoJComboBox.setSelectedItem(empleado.getGenero());
+        System.out.println(empleado.getGenero());
+    }
 
+    public Empleado dameEmpleado() {
+        Long l = (Long) (generoJComboBox.getSelectedItem());
+        Genero genero = generoRepository.recuperarId(l);
+        java.util.Date utilDate = fehcaJDateChooser.getDate();
+        java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
+        Empleado empleado = new Empleado(
+                l,
+                nombreJTextField.getName(),
+                domicilioJTextField.getText(),
+                telefonoJTextField.getText(),
+                emailJTextField.getText(),
+                fecha,
+                genero);
+        return empleado;
+    }
+        public void llenarConboBox () {
+            List<Empleado> empleados = empleadoRepository.recuperarTodos();
+            for (Empleado empleado : empleados ) {
+            numeroEmpleadoJComboBox.addItem(empleado.getId());
+            }
+            List<Genero> generos = generoRepository.recuperarTodos();
+            for (Genero genero : generos ) {
+            generoJComboBox.addItem(genero);
+    
+
+    }
 
         }
-    } 
-}
+    }
+    
