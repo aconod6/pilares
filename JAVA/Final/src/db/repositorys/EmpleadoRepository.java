@@ -18,7 +18,7 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
     @Override
     public Empleado recuperarId(Long id) {
         try (Connection connection = ConexionDB.obtenerConexion()) {
-            String q = "SELECT * FORM empleados WHERE id = ? ";
+            String q = "SELECT * FROM empleados WHERE id_empleado = ? ";
             try (PreparedStatement preparedStatement = connection.prepareStatement(q)) {
                 preparedStatement.setLong(1, id);
                 return dameEntidadResulSet(preparedStatement.executeQuery());
@@ -36,7 +36,7 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
     @Override
     public List<Empleado> recuperarTodos() {
         try (Connection connection = ConexionDB.obtenerConexion()) {
-            String q = "SELECT * FROM generos";
+            String q = "SELECT * FROM empleados";
             java.sql.Statement statement = connection.createStatement();
             return dameListaEmpleados(statement.executeQuery(q));
         } catch (Exception e) {
@@ -116,9 +116,9 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
                 nombre = resultSet.getString("nombre");
                 domicilio = resultSet.getString("domicilio");
                 telefono = resultSet.getString("telefono");
-                email = resultSet.getString("correo");
+                email = resultSet.getString("email");
                 fechadeNacimiento = resultSet.getDate("fecha_nacimiento");
-                generoId = resultSet.getLong("id_genero");
+                generoId = resultSet.getLong("generos_id_genero");
                 genero = generoRepository.recuperarId(generoId);
 
                 return new Empleado(
@@ -138,6 +138,8 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
 
     private List<Empleado> dameListaEmpleados(ResultSet resultSet){
         List<Empleado> empleados = new ArrayList<Empleado>();
+       try{
+
         Long id = null;
         String nombre = null;
         String domicilio = null;
@@ -146,15 +148,14 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
         Date fechadeNacimiento = null;
         Long generoId = null;
         Genero genero = null;
-        try {
             while (resultSet.next()){
                 id = resultSet.getLong("id_empleado");
                 nombre = resultSet.getString("nombre");
                 domicilio = resultSet.getString("domicilio");
                 telefono = resultSet.getString("telefono");
-                email = resultSet.getString("correo");
+                email = resultSet.getString("email");
                 fechadeNacimiento = resultSet.getDate("fecha_nacimiento");
-                generoId = resultSet.getLong("id_genero");
+                generoId = resultSet.getLong("generos_id_genero");
                 genero = generoRepository.recuperarId(generoId);
                 empleados.add(new Empleado(id, nombre, domicilio, telefono, email, fechadeNacimiento, genero));
             }

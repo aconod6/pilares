@@ -16,7 +16,7 @@ public class GeneroRepository implements RepositoryInterfaces<Genero> {
     @Override
     public Genero recuperarId(Long id) {
        try (Connection connection = ConexionDB.obtenerConexion()) {
-         String q = "SELECT * FORM generos WHERE id_genero = ? ";
+         String q = "SELECT * FROM generos WHERE id_genero = ? ";
          try (PreparedStatement preparedStatement = connection.prepareStatement(q)) {
             preparedStatement.setLong(1, id);
             return dameEntidadResulSet(preparedStatement.executeQuery());

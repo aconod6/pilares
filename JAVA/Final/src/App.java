@@ -13,7 +13,7 @@ import screens.VentaLogin;
 public class App {
     public static void main(String[] args) throws Exception {
         //GeneroRepository generoRepository = new GeneroRepository(); // se manda a
-        //EmpleadoRepository empleadoRepository = new EmpleadoRepository();// llamar todo los metodos de repository
+        EmpleadoRepository empleadoRepository = new EmpleadoRepository();// llamar todo los metodos de repository
         // llamar la clase para todas las
         // funciones de Genero
 
@@ -43,10 +43,17 @@ public class App {
          for (Genero genero : t) {
          System.out.println(genero.getNombre());
          } */
-        /*  List<Empleado> em = empleadoRepository.recuperarTodos();
+        /* List<Empleado> em = empleadoRepository.recuperarTodos();
          for (Empleado empleado : em ) {
          System.out.println(empleado.getNombe());
          } */
+
+         //Buscar empleado por id
+         /* Empleado empleado = empleadoRepository.recuperarId(1l);
+         System.out.println(empleado.getNombe());
+         String nombre = empleado.getNombe(); */
+
+        
         
         
         
@@ -56,7 +63,7 @@ public class App {
         
 
         //Iniciar venta empleado
-        EmpleadosVentana empleadosVentana = new EmpleadosVentana();
+      EmpleadosVentana empleadosVentana = new EmpleadosVentana();
         empleadosVentana.setVisible(true);
 
         //Este es para poder imprimir toda la tabla genero
