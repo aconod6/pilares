@@ -7,20 +7,25 @@ import javax.swing.JFrame;
 import db.conexion.ConexionDB;
 import db.repositorys.EmpleadoRepository;
 import db.repositorys.GeneroRepository;
+import db.repositorys.LoginRepository;
 import models.Empleado;
 import models.Genero;
 import screens.EmpleadosVentana;
+import screens.RegistroVentana;
 import screens.VentaLogin;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        GeneroRepository generoRepository = new GeneroRepository(); // se manda a
-        EmpleadoRepository empleadoRepository = new EmpleadoRepository();// llamar todo los metodos de repository
-        // llamar la clase para todas las
-        // funciones de Genero
-
+        // GeneroRepository generoRepository = new GeneroRepository(); // se manda a
+        // EmpleadoRepository empleadoRepository = new EmpleadoRepository();// llamar todo los metodos de repository
+        LoginRepository loginRepository = new LoginRepository();
         //EmpleadoRepository empleadoRepository = new EmpleadoRepository();
         //Empleado e1 = new Empleado(0, null, null, null, null, null, null)
+
+
+         //Iniciar ventana login
+         VentaLogin ventaLogin = new VentaLogin(null);
+         ventaLogin.setVisible(true); 
 
         
          // ?Para generar un nuevo Genero
@@ -61,14 +66,22 @@ public class App {
          System.out.println(empleado.getGenero());
          String nombre = empleado.getNombe(); */
         
-         //Iniciar ventana login
-         /* VentaLogin ventaLogin = new VentaLogin(null);
-        ventaLogin.setVisible(true); */
+        //Iniciar ventana registro
+        // RegistroVentana registroVentana = new RegistroVentana();
+        // registroVentana.setVisible(true);
+
+        //Comparar contraseñas
+        // String usuario = "mariacbr";
+        // String contrasenia = "maria123";
+        // boolean c = loginRepository.verificarCredenciales(usuario, contrasenia);
+        // if (c=true){
+        //     System.out.println("correcto");
+        // } else System.out.println("no");
         
 
         //Iniciar venta empleado
-        EmpleadosVentana empleadosVentana = new EmpleadosVentana();
-        empleadosVentana.setVisible(true);
+        // EmpleadosVentana empleadosVentana = new EmpleadosVentana();
+        // empleadosVentana.setVisible(true);
 
 
         //Este es para poder imprimir toda la tabla genero

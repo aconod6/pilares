@@ -40,8 +40,8 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
             java.sql.Statement statement = connection.createStatement();
             return dameListaEmpleados(statement.executeQuery(q));
         } catch (Exception e) {
-            System.out.println("Error en la conexcion: "+e.getMessage());
-          }
+            System.out.println("Error en la conexcion: " + e.getMessage());
+        }
         return null;
     }
 
@@ -49,7 +49,7 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
     public void agregar(Empleado entidad) {
         try (Connection connection = ConexionDB.obtenerConexion()) {
             String q = "INSERT INTO  empleados VALUES (NUll, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(q)){
+            try (PreparedStatement preparedStatement = connection.prepareStatement(q)) {
                 preparedStatement.setString(1, entidad.getNombe());
                 preparedStatement.setString(2, entidad.getDomicilio());
                 preparedStatement.setString(3, entidad.getTelefono());
@@ -57,47 +57,48 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
                 preparedStatement.setDate(5, entidad.getFechadeNacimiento());
                 preparedStatement.setLong(6, entidad.getGenero().getId());
                 preparedStatement.executeUpdate();
-            }catch(Exception e){
-                System.out.println("Error en la consulta: "+e.getMessage());
-            }   
+            } catch (Exception e) {
+                System.out.println("Error en la consulta: " + e.getMessage());
+            }
         } catch (Exception e) {
-            System.out.println("Error al recuperar la conexion: "+e.getMessage());
+            System.out.println("Error al recuperar la conexion: " + e.getMessage());
         }
     }
 
     @Override
     public void modificar(Empleado entidad) {
         try (Connection connection = ConexionDB.obtenerConexion()) {
-            String q = "UPDATE empleados SET nombre = ?, domicilio= ?, telefono= ?, email= ?, fecha_de_nacimiento= ?, id_genero= ?   WHERE id_empleado = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(q)){
+            String q = "UPDATE empleados SET nombre = ?, domicilio= ?, telefono= ?, email= ?, fecha_nacimiento= ?, generos_id_genero= ?   WHERE id_empleado = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(q)) {
                 preparedStatement.setString(1, entidad.getNombe());
                 preparedStatement.setString(2, entidad.getDomicilio());
                 preparedStatement.setString(3, entidad.getTelefono());
                 preparedStatement.setString(4, entidad.getEmail());
                 preparedStatement.setDate(5, entidad.getFechadeNacimiento());
                 preparedStatement.setLong(6, entidad.getGenero().getId());
+                preparedStatement.setLong(7, entidad.getId());
                 preparedStatement.executeUpdate();
             } catch (Exception e) {
-                System.out.println("Error en la consulta "+e.getMessage());
+                System.out.println("Error en la consulta " + e.getMessage());
             }
         } catch (Exception e) {
-            System.out.println("Error al recuperar la conexion "+e.getMessage());
+            System.out.println("Error al recuperar la conexion " + e.getMessage());
         }
     }
 
     @Override
     public void eliminar(Empleado entidad) {
         try (Connection connection = ConexionDB.obtenerConexion()) {
-        String q = "DELETE FROM empleados WHERE id_empleado = ?";
+            String q = "DELETE FROM empleados WHERE id_empleado = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(q)) {
                 preparedStatement.setLong(1, entidad.getId());
                 preparedStatement.executeUpdate();
             } catch (Exception e) {
-                System.out.println("Error en la consulta: "+e.getMessage());
+                System.out.println("Error en la consulta: " + e.getMessage());
             }
         } catch (Exception e) {
-             System.out.println("Error al recuperar la conexcion "+e.getMessage());
-        }   
+            System.out.println("Error al recuperar la conexcion " + e.getMessage());
+        }
     }
 
     private Empleado dameEntidadResulSet(ResultSet resultSet) {
@@ -136,19 +137,19 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
         return null;
     }
 
-    private List<Empleado> dameListaEmpleados(ResultSet resultSet){
+    List<Empleado> dameListaEmpleados(ResultSet resultSet) {
         List<Empleado> empleados = new ArrayList<Empleado>();
-       try{
+        try {
 
-        Long id = null;
-        String nombre = null;
-        String domicilio = null;
-        String telefono = null;
-        String email = null;
-        Date fechadeNacimiento = null;
-        Long generoId = null;
-        Genero genero = null;
-            while (resultSet.next()){
+            Long id = null;
+            String nombre = null;
+            String domicilio = null;
+            String telefono = null;
+            String email = null;
+            Date fechadeNacimiento = null;
+            Long generoId = null;
+            Genero genero = null;
+            while (resultSet.next()) {
                 id = resultSet.getLong("id_empleado");
                 nombre = resultSet.getString("nombre");
                 domicilio = resultSet.getString("domicilio");
@@ -159,11 +160,12 @@ public class EmpleadoRepository implements RepositoryInterfaces<Empleado> {
                 genero = generoRepository.recuperarId(generoId);
                 empleados.add(new Empleado(id, nombre, domicilio, telefono, email, fechadeNacimiento, genero));
             }
+
             return empleados;
         } catch (Exception e) {
-            System.out.println("Error en el resultSet lista: "+e.getMessage());
+            System.out.println("Error en el resultSet lista: " + e.getMessage());
         }
         return null;
-}
+    }
 
 }

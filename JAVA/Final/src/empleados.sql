@@ -15,7 +15,7 @@ CREATE table login (
     nombre varchar (100),
     email varchar (100) not null,
     usuario varchar (100) not null,
-    contrasenia VARCHAR(100) NOT NULL
+    contrasenia varchar(100) NOT NULL
 
 );
 CREATE table empleados (
@@ -65,3 +65,5 @@ SELECT * FROM generos;
 SELECT * FROM login;
 SELECT * FROM empleados;
 SELECT * FROM empleados WHERE id_empleado = 1 ;
+SELECT * FROM login WHERE usuario = "mariacbr" ;
+

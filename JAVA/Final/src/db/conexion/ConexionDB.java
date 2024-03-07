@@ -19,7 +19,7 @@ public class ConexionDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(url, user, pass);
-            System.out.println("Estas en linea");
+            // System.out.println("Estas en linea 1");
             return conexion;
         } catch (Exception ex) {
             System.out.println("Error al conectar la base de datos");

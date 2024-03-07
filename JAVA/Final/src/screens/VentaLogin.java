@@ -10,11 +10,16 @@ import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import db.repositorys.LoginRepository;
+
 public class VentaLogin extends JFrame implements ActionListener {
+
+    LoginRepository loginRepository = new LoginRepository();
 
     JLabel tituloJLabel;
     JLabel usuarioJLabel;
@@ -90,13 +95,25 @@ public class VentaLogin extends JFrame implements ActionListener {
             System.out.println("Inciar...");
             String usuario = usuarioJTextField.getText();
             char pwd[] = contraseniaJPasswordField.getPassword();
+            String contrasenia = new String(pwd);
             System.out.println("User: "+usuario);
             System.out.println("pwd: "+Arrays.toString(pwd));
-            // TODO: Validar usuario y contraseña si esta chido lanzas empleados ventana
+             // TODO: Llama al método verificarCredenciales en tu clase LoginRepository
+        boolean credencialesValidas = loginRepository.verificarCredenciales(usuario, contrasenia);
+
+        if (credencialesValidas== true) {
+            System.out.println("Acceso permitido");
+            // Aquí puedes abrir la ventana de empleados u realizar otras acciones
+            
             EmpleadosVentana empleadosVentana = new EmpleadosVentana();
             empleadosVentana.setVisible(true);
             dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Mijo, estas poniendo mal los datos");
+            System.out.println("Credenciales incorrectas");
+            // Aquí puedes mostrar un mensaje de error o realizar otras acciones
         }
+    }
         if (e.getSource() == registrarButton) {
             System.out.println("Registrar...");
             RegistroVentana registroVentana = new RegistroVentana();

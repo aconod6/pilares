@@ -5,16 +5,17 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.util.List;
-import java.util.Scanner;
+
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
 
 import com.toedter.calendar.JDateChooser;
 
@@ -184,15 +185,68 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         gbc.gridx = 2; // columna donde inicia
         gbc.gridy = 8; // fila donde inicia
         gbc.gridwidth = 1; // numero de columnas que abarca
+        eliminarJButton.addActionListener(this);
         add(eliminarJButton, gbc);
 
         gbc.gridx = 3; // columna donde inicia
         gbc.gridy = 8; // fila donde inicia
         gbc.gridwidth = 1; // numero de columnas que abarca
+        limpiarJButtonF.addActionListener(this);
         add(limpiarJButtonF, gbc);
     }
 
-    public void recuperarEmpleado() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == modificarJButton) {
+            int emergente = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres modificar?",
+                    "Confirmar modificacion.", JOptionPane.YES_NO_OPTION);
+
+            if (emergente == JOptionPane.YES_OPTION) {
+                System.out.println("Modificar");
+                modificarEmpleado();
+            }
+
+        }
+        if (e.getSource() == buscarJButton) {
+            System.out.println("Buscando ...");
+            recuperarEmpleado();
+        }
+        if (e.getSource() == guardarJButton) {
+            System.out.println("Guardando..");
+            guardarEmpleado();
+            System.out.println("Guradado exitoso");
+            limpiarCampo();
+            llenarConboBox();
+        }
+        if (e.getSource() == eliminarJButton) {
+            // Mostrar un cuadro de diálogo de confirmación
+            int emergente = JOptionPane.showConfirmDialog(null, "¿Seguro que quieres eliminar?",
+                    "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+            // Verificar la respuesta del usuario
+            if (emergente == JOptionPane.YES_OPTION) {
+                System.out.println("Eliminando...");
+                empleadoEliminar();
+                limpiarCampo();
+                llenarConboBox();
+
+            }
+        }
+
+        if (e.getSource() == limpiarJButtonF) {
+            System.out.println("Limpiando..");
+            limpiarCampo();
+            llenarConboBox();
+        }
+    }
+
+    private void empleadoEliminar() {
+        empleado = empleadoRepository.recuperarId((long) (numeroEmpleadoJComboBox.getSelectedItem()));
+        empleadoRepository.eliminar(empleado);
+    }
+
+    private void recuperarEmpleado() {
         Long id = Long.parseLong(numeroEmpleadoJComboBox.getSelectedItem().toString());
         empleado = empleadoRepository.recuperarId(id);
         nombreJTextField.setText(empleado.getNombe());
@@ -205,6 +259,9 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         System.out.println(empleado.getGenero());
     }
 
+    // ?Comparar genero para poder ver el genero que le corresponde a cada empleado,
+    // se hace
+    // ? porque no se pueden igualar los objetos.
     private int comparaGenero(Genero genero) {
         int tamanio = generoJComboBox.getItemCount();
         for (int i = 0; i < tamanio; i++) {
@@ -215,49 +272,28 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         return -1;
     }
 
-    public void guardarEmpleado() {
-        Long l = (Long) (generoJComboBox.getSelectedItem());
-        Genero genero = generoRepository.recuperarId(l);
-        java.util.Date utilDate = fehcaJDateChooser.getDate();
-        java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
+    private void limpiarCampo() {
+        empleado = null;
+        nombreJTextField.setText("");
+        domicilioJTextField.setText("");
+        telefonoJTextField.setText("");
+        emailJTextField.setText("");
+        fehcaJDateChooser.setDate(null);
+        numeroEmpleadoJComboBox.removeAllItems();
+        generoJComboBox.removeAllItems();
+    }
+
+    private void guardarEmpleado() {
         Empleado empleado = new Empleado(
                 null,
-                nombreJTextField.getName(),
+                nombreJTextField.getText(),
                 domicilioJTextField.getText(),
                 telefonoJTextField.getText(),
                 emailJTextField.getText(),
-                fecha,
-                genero);
+                convertirf(fehcaJDateChooser.getDate()),
+                generoJComboBox.getItemAt(generoJComboBox.getSelectedIndex()));
         empleadoRepository.agregar(empleado);
 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == modificarJButton) {
-            System.out.println("Modificar");
-            modificarEmpleado();
-
-        }
-        if (e.getSource() == buscarJButton) {
-            System.out.println("Buscando ...");
-            recuperarEmpleado();
-        }
-        if (e.getSource() == guardarJButton) {
-            Long l = (Long) (generoJComboBox.getSelectedItem());
-            Genero genero = generoRepository.recuperarId(l);
-            java.util.Date utilDate = fehcaJDateChooser.getDate();
-            java.sql.Date fecha = new java.sql.Date(utilDate.getTime());
-            Empleado empleado = new Empleado(
-                    null,
-                    nombreJTextField.getName(),
-                    domicilioJTextField.getText(),
-                    telefonoJTextField.getText(),
-                    emailJTextField.getText(),
-                    fecha,
-                    genero);
-            empleadoRepository.agregar(empleado);
-        }
     }
 
     private void modificarEmpleado() {
@@ -266,10 +302,12 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         empleado.setTelefono(telefonoJTextField.getText());
         empleado.setEmail(emailJTextField.getText());
         empleado.setFechadeNacimiento(convertirf(fehcaJDateChooser.getDate()));
+        empleado.setGenero(generoJComboBox.getItemAt(generoJComboBox.getSelectedIndex()));
+        empleadoRepository.modificar(empleado);
 
     }
 
-    public Empleado dameEmpleado() {
+    private Empleado dameEmpleado() {
         Long l = (Long) (generoJComboBox.getSelectedItem());
         Genero genero = generoRepository.recuperarId(l);
         Empleado empleado = new Empleado(
@@ -283,7 +321,7 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
         return empleado;
     }
 
-    public void llenarConboBox() {
+    private void llenarConboBox() {
         List<Empleado> empleados = empleadoRepository.recuperarTodos();
         for (Empleado empleado : empleados) {
             numeroEmpleadoJComboBox.addItem(empleado.getId());
@@ -296,7 +334,9 @@ public class EmpleadosVentana extends JFrame implements ActionListener {
 
     }
 
-    private java.sql.Date convertirf (java.util.Date utilFecha){
+    // ?Convertir fecha de java a sql
+    private java.sql.Date convertirf(java.util.Date utilFecha) {
         return new java.sql.Date(utilFecha.getTime());
     }
+
 }
